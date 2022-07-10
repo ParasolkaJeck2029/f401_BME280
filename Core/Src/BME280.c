@@ -1,3 +1,5 @@
+//нестабільна версія
+
 #include "BME280.h"
 
 extern I2C_HandleTypeDef BME280_I2C_HANDLER;

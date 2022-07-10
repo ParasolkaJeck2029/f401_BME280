@@ -146,6 +146,7 @@ void BME280_ReadCalibration();
 void BME280_SetOversamplingHum(uint8_t oversampling_hum);
 void BME280_SetOversamplingTemp(uint8_t oversampling_temp);
 void BME280_SetOversamplingPress(uint8_t oversampling_pres);
+void BME280_SetMode(uint8_t mode);
 
 uint8_t BME280_SetOversampling(uint8_t oversampling_temp, uint8_t oversampling_pres, uint8_t oversampling_hum, uint8_t mode);
 uint8_t BME280_GetOversamplingMode(uint8_t *array);

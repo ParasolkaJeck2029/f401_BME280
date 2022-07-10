@@ -251,6 +251,21 @@ void BME280_SetOversamplingPress(uint8_t oversampling_pres){
 	HAL_Delay(10);
 	BME280_WriteReg(REG_CTRL_MEAS, new_reg);
 }
+void BME280_SetMode(uint8_t mode){
+	if(mode != BME280_MODE_SLEEP && mode != BME280_MODE_FORCED && mode != BME280_MODE_NORMAL){
+		return;
+	}
+	uint8_t current_reg, new_reg;
+	current_reg = BME280_ReadReg(REG_CTRL_MEAS);
+	//printf("current_reg: %d\r\n", current_reg);
+	new_reg = current_reg & 0b11111100;
+	//printf("new_reg: %d\r\n", new_reg);
+	new_reg = new_reg | mode;
+	//printf("new_reg: %d\r\n", new_reg);
+	HAL_Delay(10);
+	BME280_WriteReg(REG_CTRL_MEAS, new_reg);
+
+}
 uint8_t BME280_GetOversamplingMode(uint8_t *array){
 	//write array oversampling temperature, pressure, humidity, and mode
 	uint8_t ovrs_hum, ovrs_temp, ovrs_pres, mode;

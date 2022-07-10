@@ -116,10 +116,6 @@ int main(void)
   HAL_StatusTypeDef ret;
   ret = HAL_I2C_IsDeviceReady(&hi2c1, 0x76, 3, 5);
   BME280_Init();
-  uint8_t id_sensor = BME280_GetID();
-  uint8_t status_sensor = BME280_GetStatus();
-
-  printf("Devise ready: %d\r\nID: %d\r\nDevise status: %d\n\rTemperature: %d\n\r",ret, id_sensor, status_sensor);
 /*
   printf("Reset\r\n");
   BME280_SoftReset();
@@ -134,8 +130,8 @@ int main(void)
   BME280_GetOversamplingMode(&om);
   printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
 
-  //BME280_GetConfig(&bme_conf);
-  //printf("Standby: %d\r\nFilter: %d\r\nSPI 3-Wire: %d\r\n",bme_conf.standby, bme_conf.filter, bme_conf.spi3);
+  BME280_GetConfig(&bme_conf);
+  printf("Standby: %d\r\nFilter: %d\r\nSPI 3-Wire: %d\r\n\r\n",bme_conf.standby, bme_conf.filter, bme_conf.spi3);
   /*
   BME280_SetOversamplingHum(BME280_OVERSAMPLING_X1);
   BME280_GetOversamplingMode(&om);
@@ -154,6 +150,14 @@ int main(void)
   printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
 	*/
 
+  /*
+  BME280_SetStandbyTime(BME280_STANDBY_TIME_125);
+  BME280_GetConfig(&bme_conf);
+  printf("Standby: %d\r\nFilter: %d\r\nSPI 3-Wire: %d\r\n\r\n",bme_conf.standby, bme_conf.filter, bme_conf.spi3);
+  BME280_SetFilter(BME280_FILTER_OFF);
+  BME280_GetConfig(&bme_conf);
+  printf("Standby: %d\r\nFilter: %d\r\nSPI 3-Wire: %d\r\n\r\n",bme_conf.standby, bme_conf.filter, bme_conf.spi3);
+	*/
   while (1)
   {
     /* USER CODE END WHILE */

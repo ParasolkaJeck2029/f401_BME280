@@ -315,6 +315,50 @@ void BME280_ReadCalibration(){
 	*/
 }
 
+void BME280_SetStandbyTime(uint8_t standby_time){
+	switch (standby_time){
+	case BME280_STANDBY_TIME_05:break;
+	case BME280_STANDBY_TIME_10:break;
+	case BME280_STANDBY_TIME_20:break;
+	case BME280_STANDBY_TIME_62:break;
+	case BME280_STANDBY_TIME_125:break;
+	case BME280_STANDBY_TIME_250:break;
+	case BME280_STANDBY_TIME_500:break;
+	case BME280_STANDBY_TIME_1000:break;
+	default: return;
+	}
+	uint8_t current_reg, new_reg;
+	current_reg = BME280_ReadReg(REG_CONFIG);
+	new_reg = current_reg & 0b00011111;
+	new_reg = new_reg | (standby_time << 5);
+	BME280_WriteReg(REG_CONFIG, new_reg);
+}
+void BME280_SetFilter(uint8_t filter_coeficient){
+	switch (filter_coeficient){
+	case BME280_FILTER_OFF:break;
+	case BME280_FILTER_2:break;
+	case BME280_FILTER_4:break;
+	case BME280_FILTER_8:break;
+	case BME280_FILTER_16:break;
+	default: return;
+	}
+	uint8_t current_reg, new_reg;
+	current_reg = BME280_ReadReg(REG_CONFIG);
+	new_reg = current_reg & 0b11100011;
+	new_reg = new_reg | (filter_coeficient << 2);
+	BME280_WriteReg(REG_CONFIG, new_reg);
+}
+void BME280_SPI_3Wire(uint8_t state){
+	if (state > 0){
+		state = 1;
+	}
+	uint8_t current_reg, new_reg;
+	current_reg = BME280_ReadReg(REG_CONFIG);
+	new_reg = current_reg & 0b11111110;
+	new_reg = new_reg | (state);
+	BME280_WriteReg(REG_CONFIG, new_reg);
+}
+
 uint8_t BME280_SetConfig(uint8_t standby_time, uint8_t filter_coeficient, uint8_t spi_3wire_mode){
 	//set standby time, coefficient of filtration, and enable the 3-wire SPI
 	uint8_t reg_value;

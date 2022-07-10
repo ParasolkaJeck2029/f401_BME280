@@ -143,6 +143,8 @@ void BME280_SoftReset();
 void BME280_ReadReg_BE_U24(uint8_t Reg, uint32_t *Value);
 void BME280_ReadCalibration();
 
+void BME280_SetOversamplingHum(uint8_t oversampling_hum);
+
 uint8_t BME280_SetOversampling(uint8_t oversampling_temp, uint8_t oversampling_pres, uint8_t oversampling_hum, uint8_t mode);
 uint8_t BME280_GetOversamplingMode(uint8_t *array);
 

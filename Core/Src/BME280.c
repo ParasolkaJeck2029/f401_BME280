@@ -212,6 +212,17 @@ uint8_t BME280_SetOversampling(uint8_t oversampling_temp, uint8_t oversampling_p
 	return res;
 }
 
+void BME280_SetOversamplingHum(uint8_t oversampling_hum){
+	if (oversampling_hum != BME280_OVERSAMPLING_X1 && oversampling_hum != BME280_OVERSAMPLING_X2 && oversampling_hum != BME280_OVERSAMPLING_X4 && oversampling_hum != BME280_OVERSAMPLING_X4 && oversampling_hum != BME280_OVERSAMPLING_X8 && oversampling_hum != BME280_OVERSAMPLING_X16){
+		return;
+	}
+	uint8_t reg_meas = BME280_ReadReg(REG_CTRL_MEAS);
+	HAL_Delay(10);
+	BME280_WriteReg(REG_CTRL_HUM, oversampling_hum);
+	HAL_Delay(10);
+	BME280_WriteReg(REG_CTRL_MEAS, reg_meas);
+}
+
 uint8_t BME280_GetOversamplingMode(uint8_t *array){
 	//write array oversampling temperature, pressure, humidity, and mode
 	uint8_t ovrs_hum, ovrs_temp, ovrs_pres, mode;

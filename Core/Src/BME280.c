@@ -11,10 +11,11 @@ int32_t temp_int;
 uint8_t BME280_Init(){
 	LED_ON;
 	HAL_I2C_Init(&BME280_I2C_HANDLER);
+	uint8_t id_of_chip = BME280_GetID();
 	BME280_ReadCalibration();
 	BME280_SetOversampling(BME280_OVERSAMPLING_X8, BME280_OVERSAMPLING_X4, BME280_OVERSAMPLING_X4, BME280_MODE_NORMAL);
-	BME280_SetConfig(BME280_STANDBY_TIME_10, BME280_FILTER_4, BME280_3WIRE_SPI_OFF);
-	return 0;
+	BME280_SetConfig(BME280_STANDBY_TIME_10, BME280_FILTER_16, BME280_3WIRE_SPI_OFF);
+	return id_of_chip;
 }
 
 void Error(){
@@ -136,7 +137,7 @@ uint8_t BME280_GetID(void){
 	uint8_t id = 0;
 	id = BME280_ReadReg(REG_ID);
 	if(id != 0x60 && id != 0x56 && id != 0x57 && id != 0x58){
-		Error();
+		printf("Incorrect ID\r\n");
 	}
 	return id;
 }

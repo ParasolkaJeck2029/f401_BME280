@@ -145,6 +145,10 @@ int main(void)
    BME280_GetOversamplingMode(&om);
    printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
 
+   BME280_SetOversamplingPress(BME280_OVERSAMPLING_X16);
+     BME280_GetOversamplingMode(&om);
+     printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
+
   while (1)
   {
     /* USER CODE END WHILE */

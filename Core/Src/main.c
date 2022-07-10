@@ -136,7 +136,7 @@ int main(void)
 
   //BME280_GetConfig(&bme_conf);
   //printf("Standby: %d\r\nFilter: %d\r\nSPI 3-Wire: %d\r\n",bme_conf.standby, bme_conf.filter, bme_conf.spi3);
-
+  /*
   BME280_SetOversamplingHum(BME280_OVERSAMPLING_X1);
   BME280_GetOversamplingMode(&om);
   printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
@@ -152,6 +152,7 @@ int main(void)
   BME280_SetMode(BME280_MODE_FORCED);
   BME280_GetOversamplingMode(&om);
   printf("temp: %d\r\npres: %d\r\nhum: %d\r\nmode: %d\r\n\r\n", om.ovs_tepm, om.ovs_pres, om.ovs_hum, om.mode);
+	*/
 
   while (1)
   {

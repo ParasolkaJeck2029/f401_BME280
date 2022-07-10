@@ -152,5 +152,9 @@ uint8_t BME280_SetOversampling(uint8_t oversampling_temp, uint8_t oversampling_p
 uint8_t BME280_GetOversamplingMode(uint8_t *array);
 
 uint8_t BME280_SetConfig(uint8_t standby_time, uint8_t filter_coeficient, uint8_t spi_3wire_mode);
+
+void BME280_SetStandbyTime(uint8_t standby_time);
+void BME280_SetFilter(uint8_t filter_coeficient);
+void BME280_SPI_3Wire(uint8_t state);
 void BME280_GetConfig(uint8_t *array);
 #endif /* INC_BME280_H_ */

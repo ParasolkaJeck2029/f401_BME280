@@ -4,7 +4,7 @@
 
 extern I2C_HandleTypeDef BME280_I2C_HANDLER;
 extern UART_HandleTypeDef huart1;
-extern char srt1[100];
+
 
 BME280_Calibrate_parametrs BME280_Cal_par;
 
